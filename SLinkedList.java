@@ -1,3 +1,5 @@
+
+
 public class SLinkedList <T>  //Keeps either people or list.
 {
     private Node<T> head, tail;
@@ -10,37 +12,34 @@ public class SLinkedList <T>  //Keeps either people or list.
         tail = null;
     }
 
-    @Override
-    public String toString()
+    public void DisplayList()
     {
+        System.out.println("---------------------------------------------------------------------");
         Node<T> temp = head;
-        String result = "";
         while(temp != null)
-        {
-            result += "Priority: "+ getCabinCrewObject(temp).getCredit()+" Job: "+ getCabinCrewObject(temp).getJob()+"\n";
-            temp=temp.getNext();
+        {   
+            DisplayInterface item = (DisplayInterface) temp.getObject();
+            System.out.println(item.getDisplayString());
+            temp = temp.getNext();
         }
-        return result;
-    } 
+        System.out.println("---------------------------------------------------------------------");
+
+    }
 
     /* ---  ADD METHODS   ---  */
     /*------------------------ */
-    public void AddItem(Node<T> newItem)
+    public void Add(T object) 
     {
-        //Detecting whether newItem is a person or a list:
-        if(newItem.getObject() instanceof Person)
+        Node<T> node = new Node<>(object); //the object is converted to a node to put it into a list. (Object is passenger, cabin_crew or SLinkedList in this context.)
+        if(head == null)
         {
-            System.out.println("person");
-            if(head == null)
-            {
-                head = newItem;
-                tail = newItem;
-                count++;
-                System.out.println("head: "+head);
-            }
-            else
-            {
-                if(newItem.getObject() instanceof Passenger)
+            head = node;
+            tail = node;
+            count++;
+        }
+        else if(node.getObject() instanceof Person) //Detecting whether newItem is a person or a list:
+        {
+            if(node.getObject() instanceof Passenger)
                 {
                     Node<T> temp = head;
                     while(temp != null)
@@ -50,32 +49,31 @@ public class SLinkedList <T>  //Keeps either people or list.
                 }
                 else //Cabin_Crew 
                 {
-                    System.out.println("Cabincrew");
                     Node<T> temp =  head;
                     Node<T> temp2 = temp.getNext();
-                    double newItemCredit = getCabinCrewObject(newItem).getCredit();
-                    if(newItemCredit <= getCabinCrewObject(head).getCredit())
+                    double newItemCredit = ((Cabin_Crew)node.getObject()).getCredit();
+
+                    if(newItemCredit <= ((Cabin_Crew)head.getObject()).getCredit())
                     {
-                            newItem.setNext(head);
-                            head = newItem;
+                            node.setNext(head);
+                            head = node;
                     }
                     else
                     {
-                        System.out.println(2);
                         while(temp != null)//Fİnding the correct place of the newItem
                         {
-                            double tempCredit = getCabinCrewObject(temp).getCredit();
+                            double tempCredit = ((Cabin_Crew)temp.getObject()).getCredit();
                             double temp2Credit = -1;
                             if(temp2 != null)
-                                temp2Credit = getCabinCrewObject(temp2).getCredit();
+                                temp2Credit = ((Cabin_Crew)temp.getObject()).getCredit();
 
                         
                             if((newItemCredit > tempCredit && newItemCredit <= temp2Credit) || (newItemCredit > tempCredit && temp2 == null))
                             {              
-                                temp.setNext(newItem);
-                                newItem.setNext(temp2);
+                                temp.setNext(node);
+                                node.setNext(temp2);
                                 if(temp2 == null)
-                                    tail = newItem;
+                                    tail = node;
                                 return;
                             }
                             else
@@ -87,14 +85,16 @@ public class SLinkedList <T>  //Keeps either people or list.
                         }
                     }
                     
-                }
+                }    
                 
             }
-        }
+        
         else
         {
             System.out.println("not person");
         }
+        System.out.println("New item successfully added. -----------------");
+
 
         
     }
@@ -108,19 +108,13 @@ public class SLinkedList <T>  //Keeps either people or list.
 
 
 
+
     /*Some useful methods to decrease code redundancy and provide simplicity */
     /*--------------------------------------------- */
-    private Cabin_Crew getCabinCrewObject(Node<T> node)
-        {
-            /*This method takes the node, turn it into a Cabin_crew object by casting 
-            by aimnig to reach Cabin_Crew class methods using nodes. */
-            if(node != null)
-            {
-                return (Cabin_Crew)node.getObject();
-            }
-            else
-                return null;
-        }
+    
+
+
+}
 
 
 
@@ -129,7 +123,7 @@ public class SLinkedList <T>  //Keeps either people or list.
 
 
     
-}
+
 
 
 

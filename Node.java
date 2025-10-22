@@ -6,6 +6,7 @@ public class Node <T> // <T> means type of the node: It can be a passenger or a 
     public Node(T object)
     {
         this.object = object;
+        this.next = null;
     }
 
     /*GET-SET METHODS */
