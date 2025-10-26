@@ -24,12 +24,11 @@ public class Main
         while (true) 
         {
             System.out.println("--------------------------------------------------------------");
-            System.out.println("""
-                Enter the operation: 
-                1: Add a person 
-                2: Print all the list 
-                3: Delete all the people with the given ID 
-                4: Combine all the lists sorted by ID, print and then exit""");
+            System.out.println("                Enter the operation: \n" +
+                   "                1: Add a person \n" +
+                   "                2: Print all the list \n" +
+                   "                3: Delete all the people with the given ID \n" +
+                   "                4: Combine all the lists sorted by ID, print and then exit");
             int choosen;
             try {
                 choosen = s.nextInt();
@@ -42,8 +41,7 @@ public class Main
             s.nextLine();
             switch (choosen)
             {
-                case 1 -> 
-                {
+                case 1 :
                     String type;
                     String name;
                     long ID;
@@ -65,8 +63,7 @@ public class Main
                     
                     switch(type)
                     {
-                        case "passenger" -> 
-                        {
+                        case "passenger":
                             System.out.println("Enter the ticket type (economy, economy-premium, business):");
                             String ticket = s.next();
                             int priority;
@@ -89,9 +86,8 @@ public class Main
                                 case "business" -> business_passangers_list.Add(newPassenger);
                                 default -> System.out.println("ERROR: Invalid ticket type.");
                             }
-                        }
-                        case "cabin-crew" ->
-                        {
+                        break;
+                        case "cabin-crew" :
                             s.nextLine();
                             System.out.println("Enter the job: ");
                             String job = s.nextLine();
@@ -106,36 +102,28 @@ public class Main
                             }
                             Cabin_Crew newCrew = new Cabin_Crew(name, ID, job, credit);
                             cabin_crew_list.Add(newCrew);
-                        }
+                        break;
                     }
-                }
+                break;
 
-                case 2 -> 
-                {                
+                case 2 :                
                     list_of_lists.DisplayList();
-                }
-                case 3 ->
-                {
+                break;
+                case 3 :
                     System.out.println("Enter the ID to delete:");
                     long id = s.nextInt();
                     list_of_lists.RemoveByID(id);
-                }
-                case 4 ->
-                {
+                break;
+                case 4:
                     SLinkedList<?> sortedList;
                     sortedList = list_of_lists.SortListByID();
                     sortedList.DisplayList();
                     s.close();
                     System.out.println("--- END OF THE PROGRAM ---");
                     System.out.println("--------------------------------------------------------------");
-                    return;
-                }
-
+                break;
             }
         }
-        
-
-        
     }    
 }
 

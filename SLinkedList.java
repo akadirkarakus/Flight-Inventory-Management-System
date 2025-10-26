@@ -68,13 +68,12 @@ public class SLinkedList <T extends DisplayInterface>  implements DisplayInterfa
             count++;
         }
         else if(newItem instanceof Person) //Detecting whether newItem is a person or a list:
-        {
+        {   
             Node<T> temp = head;
             Node<T> temp2 = temp.getNext();
 
             if(newItem instanceof Passenger passenger) //Passenger
             {
-                
                 int newPriority = passenger.getPriority();
                 
                 if(newPriority <= ((Passenger) head.getObject()).getPriority())
