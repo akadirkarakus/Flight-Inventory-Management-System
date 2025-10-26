@@ -1,7 +1,5 @@
 public class Passenger extends Person implements DisplayInterface
 {
-    //String name, type; 
-    //long ID
     private String ticket;
     private int priority;
     
@@ -11,6 +9,7 @@ public class Passenger extends Person implements DisplayInterface
         this.priority = priority;
         this.name = name;
         this.ID = ID;
+        this.type = "Passenger";
     }
     
     public int getPriority()

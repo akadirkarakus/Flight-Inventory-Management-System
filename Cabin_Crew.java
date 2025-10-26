@@ -9,7 +9,7 @@ public class Cabin_Crew extends Person implements DisplayInterface
         this.credit = credit;
         this.name = name;
         this.ID = ID;
-        this.type = "cabin-crew";
+        this.type = "Cabin-crew";
     }
 
     public double getCredit()
@@ -26,4 +26,6 @@ public class Cabin_Crew extends Person implements DisplayInterface
     {
         return (getPersonDisplay()+", Job: "+job+ ", Credit: "+credit);
     }
+
+   
 }

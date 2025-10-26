@@ -1,4 +1,4 @@
-public class Person 
+public class Person implements IdentifyInterface
 {
     protected String name, type;
     protected long ID;

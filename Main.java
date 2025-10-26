@@ -10,13 +10,20 @@ public class Main
         SLinkedList<Passenger> economy_premium_passangers_list = new SLinkedList<>();
         SLinkedList<Passenger> business_passangers_list = new SLinkedList<>();
         SLinkedList<Cabin_Crew> cabin_crew_list = new SLinkedList<>();
-        SLinkedList<SLinkedList<?>> list_of_list = new SLinkedList<>();    
+        SLinkedList<SLinkedList<?>> list_of_lists = new SLinkedList<>();    
+        
+        list_of_lists.Add(business_passangers_list);
+        list_of_lists.Add(economy_passangers_list);
+        list_of_lists.Add(economy_premium_passangers_list);
+        list_of_lists.Add(cabin_crew_list);
+            
+        
+        
 
         Scanner s = new Scanner(System.in);
         while (true) 
         {
-            System.out.println("Enter -1 to exit.");
-
+            System.out.println("--------------------------------------------------------------");
             System.out.println("""
                 Enter the operation: 
                 1: Add a person 
@@ -46,7 +53,7 @@ public class Main
                         name = s.nextLine();
                         System.out.println("Enter the ID: ");
                         ID = s.nextLong();
-                        System.out.println("Enter the type (passanger or cabin-crew): ");
+                        System.out.println("Enter the type (passenger or cabin-crew): ");
                         type = s.next();
                         
                     } catch (Exception e) 
@@ -78,7 +85,7 @@ public class Main
                             switch(ticket)
                             {
                                 case "economy" -> economy_passangers_list.Add(newPassenger);
-                                case "economy-premimum" -> economy_premium_passangers_list.Add(newPassenger);
+                                case "economy-premium" -> economy_premium_passangers_list.Add(newPassenger);
                                 case "business" -> business_passangers_list.Add(newPassenger);
                                 default -> System.out.println("ERROR: Invalid ticket type.");
                             }
@@ -104,14 +111,25 @@ public class Main
                 }
 
                 case 2 -> 
-                {
-                    System.out.println("toString method run");
-                    
-                    cabin_crew_list.DisplayList();
-                    System.out.println("toString method hass been run and completed..");
-                    
+                {                
+                    list_of_lists.DisplayList();
                 }
+                case 3 ->
+                {
+                    System.out.println("Enter the ID to delete:");
+                    long id = s.nextInt();
+                    list_of_lists.RemoveByID(id);
+                }
+                case 4 ->
+                {
+                    
+                    s.close();
+                }
+
             }
         }
+        
+
+        
     }    
 }
