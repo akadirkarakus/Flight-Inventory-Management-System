@@ -1,7 +1,7 @@
-public class Cabin_Crew extends Person implements DisplayInterface
+public class Cabin_Crew extends Person 
 {
-    private String job;
-    private double credit;
+    private final String job;
+    private final double credit;
     
     public Cabin_Crew(String name, long ID, String job, double credit)
     {
@@ -24,7 +24,8 @@ public class Cabin_Crew extends Person implements DisplayInterface
     @Override
     public String getDisplayString()
     {
-        return (getPersonDisplay()+", Job: "+job+ ", Credit: "+credit);
+        String personInfo = super.getDisplayString();
+        return (personInfo+", Job: "+job+ ", Credit: "+credit);
     }
 
    

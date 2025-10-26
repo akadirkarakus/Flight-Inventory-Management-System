@@ -1,4 +1,4 @@
-public class Person implements IdentifyInterface
+public class Person implements IdentifyInterface, DisplayInterface
 {
     protected String name, type;
     protected long ID;
@@ -11,12 +11,14 @@ public class Person implements IdentifyInterface
     {
         return type;
     }
+    @Override
     public long getID()
     {
         return ID;
     }
 
-    protected String getPersonDisplay()
+    @Override
+    public String getDisplayString()
     {
         /*
          * This method is used for decreasing code redundancy by collecting common things for the getDisplayString methods.

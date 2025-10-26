@@ -122,8 +122,13 @@ public class Main
                 }
                 case 4 ->
                 {
-                    
+                    SLinkedList<?> sortedList;
+                    sortedList = list_of_lists.SortListByID();
+                    sortedList.DisplayList();
                     s.close();
+                    System.out.println("--- END OF THE PROGRAM ---");
+                    System.out.println("--------------------------------------------------------------");
+                    return;
                 }
 
             }
@@ -133,3 +138,5 @@ public class Main
         
     }    
 }
+
+//DÖRT KOMUT DA EKSİKSİZ ÇALIŞIYOR GİBİ GÖRÜNÜYOR. SON TESTLERİ YAP. SONRASINDA DÖKÜMANTASYONA GEÇEBİLİRSİN.

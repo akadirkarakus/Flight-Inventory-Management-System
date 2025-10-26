@@ -1,7 +1,7 @@
-public class Passenger extends Person implements DisplayInterface
+public class Passenger extends Person
 {
-    private String ticket;
-    private int priority;
+    private final String ticket;
+    private final int priority;
     
     public Passenger(String name, long ID, String ticket, int priority)
     {
@@ -20,6 +20,7 @@ public class Passenger extends Person implements DisplayInterface
     @Override
     public String getDisplayString()
     {
-        return (getPersonDisplay()+", Ticket: "+ticket+ ", Priority: "+priority);
+        String personInfo = super.getDisplayString();
+        return (personInfo + ", Ticket: "+ticket+ ", Priority: "+priority);
     }
 }
