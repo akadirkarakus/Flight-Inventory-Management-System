@@ -31,8 +31,6 @@ public class SLinkedList <T extends DisplayInterface>  implements DisplayInterfa
          * But this feature is not used in this project since it is not needed.
         */
 
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("--------------------------------------------------------------");
         StringBuilder resultBuilder = new StringBuilder();
         Node<T> temp = head;
         while(temp != null)
@@ -52,7 +50,6 @@ public class SLinkedList <T extends DisplayInterface>  implements DisplayInterfa
             System.out.println(resultBuilder.toString());
         else
             System.out.println("There is no item in the list.");
-        System.out.println("--------------------------------------------------------------");
     }
 
     /* ---  ADD METHODS   ---  */
@@ -72,8 +69,9 @@ public class SLinkedList <T extends DisplayInterface>  implements DisplayInterfa
             Node<T> temp = head;
             Node<T> temp2 = temp.getNext();
 
-            if(newItem instanceof Passenger passenger) //Passenger
+            if(newItem instanceof Passenger) //Passenger
             {
+                Passenger passenger = (Passenger) newItem;
                 int newPriority = passenger.getPriority();
                 
                 if(newPriority <= ((Passenger) head.getObject()).getPriority())
@@ -144,8 +142,6 @@ public class SLinkedList <T extends DisplayInterface>  implements DisplayInterfa
                 }
                 
             }        
-            //Passenger
-            System.out.println("New item has been added successfully.");      
         }
         
         else //adding process for list_of_list, it will be an AddLast method.
@@ -204,8 +200,7 @@ public class SLinkedList <T extends DisplayInterface>  implements DisplayInterfa
                         else
                             innerList.head = innerTemp.getNext();
                         innerList.setCount(count--);
-                        System.out.println("The person with "+id+" has been deleted successfully.");
-                        return;
+                        //System.out.println("The person with "+id+" has been deleted successfully.");
                     }
                     else
                     {
@@ -215,7 +210,6 @@ public class SLinkedList <T extends DisplayInterface>  implements DisplayInterfa
                 }
                 listIterator = listIterator.getNext();
             }
-            System.out.println("ERROR: Any person couldn't found with this id.");
         }   
     }
 
@@ -305,34 +299,4 @@ public class SLinkedList <T extends DisplayInterface>  implements DisplayInterfa
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

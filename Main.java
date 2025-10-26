@@ -4,7 +4,7 @@ public class Main
 {
     public static void main(String[] args) 
     {
-        /*CREATE 4 LINKED LIST HERE. */
+        /* --- ESSENTIAL DECLERATIONS --------------------------- */
 
         SLinkedList<Passenger> economy_passangers_list = new SLinkedList<>();
         SLinkedList<Passenger> economy_premium_passangers_list = new SLinkedList<>();
@@ -12,23 +12,23 @@ public class Main
         SLinkedList<Cabin_Crew> cabin_crew_list = new SLinkedList<>();
         SLinkedList<SLinkedList<?>> list_of_lists = new SLinkedList<>();    
         
-        list_of_lists.Add(business_passangers_list);
         list_of_lists.Add(economy_passangers_list);
         list_of_lists.Add(economy_premium_passangers_list);
+        list_of_lists.Add(business_passangers_list);
         list_of_lists.Add(cabin_crew_list);
             
-        
-        
-
         Scanner s = new Scanner(System.in);
-        while (true) 
+
+
+        /* ------------- BODY OF THE MAIN METHOD ------------- */
+
+        while (true) //The operation choosing loop.
         {
-            System.out.println("--------------------------------------------------------------");
-            System.out.println("                Enter the operation: \n" +
-                   "                1: Add a person \n" +
-                   "                2: Print all the list \n" +
-                   "                3: Delete all the people with the given ID \n" +
-                   "                4: Combine all the lists sorted by ID, print and then exit");
+            System.out.println("Enter the operation: \n" +
+                   "1: Add a person \n" +
+                   "2: Print all the lists \n" +
+                   "3: Delete all the people with the given ID \n" +
+                   "4: Combine all the lists sorted by ID, print and then exit");
             int choosen;
             try {
                 choosen = s.nextInt();
@@ -37,21 +37,21 @@ public class Main
                 s.nextLine();
                 continue;
             }
-            
             s.nextLine();
-            switch (choosen)
+
+            switch (choosen) //Purpose of This Part: Detecting what the user chose and calling the needed function accordingly.
             {
-                case 1 :
+                case 1 : //Add person
                     String type;
                     String name;
                     long ID;
-                    try 
-                    {
+                    try  
+                    {   //Purpose: Collecting the base information about new person.
                         System.out.println("Enter the name: ");
                         name = s.nextLine();
                         System.out.println("Enter the ID: ");
                         ID = s.nextLong();
-                        System.out.println("Enter the type (passenger or cabin-crew): ");
+                        System.out.println("Enter the type (passanger or cabin-crew): ");
                         type = s.next();
                         
                     } catch (Exception e) 
@@ -61,9 +61,9 @@ public class Main
                         continue;
                     }
                     
-                    switch(type)
+                    switch(type) 
                     {
-                        case "passenger":
+                        case "passanger": //Add operation for passenger objects.
                             System.out.println("Enter the ticket type (economy, economy-premium, business):");
                             String ticket = s.next();
                             int priority;
@@ -79,12 +79,20 @@ public class Main
                             }
                             
                             Passenger newPassenger = new Passenger(name, ID, ticket, priority);
-                            switch(ticket)
+                            switch(ticket) //Purpose: Fİnding the ticket type of passenger to add passenger related list.
                             {
-                                case "economy" -> economy_passangers_list.Add(newPassenger);
-                                case "economy-premium" -> economy_premium_passangers_list.Add(newPassenger);
-                                case "business" -> business_passangers_list.Add(newPassenger);
-                                default -> System.out.println("ERROR: Invalid ticket type.");
+                                case "economy":
+                                    economy_passangers_list.Add(newPassenger);
+                                break;
+                                case "economy-premium":
+                                    economy_premium_passangers_list.Add(newPassenger);
+                                    break;
+                                case "business" :
+                                    business_passangers_list.Add(newPassenger);
+                                    break;
+                                default : 
+                                    System.out.println("ERROR: Invalid ticket type.");
+                                    break;
                             }
                         break;
                         case "cabin-crew" :
@@ -104,27 +112,25 @@ public class Main
                             cabin_crew_list.Add(newCrew);
                         break;
                     }
+                System.out.println("");
                 break;
 
                 case 2 :                
                     list_of_lists.DisplayList();
+                    System.out.println();
                 break;
                 case 3 :
                     System.out.println("Enter the ID to delete:");
                     long id = s.nextInt();
                     list_of_lists.RemoveByID(id);
+                    System.out.println();
                 break;
                 case 4:
                     SLinkedList<?> sortedList;
                     sortedList = list_of_lists.SortListByID();
                     sortedList.DisplayList();
-                    s.close();
-                    System.out.println("--- END OF THE PROGRAM ---");
-                    System.out.println("--------------------------------------------------------------");
-                break;
+                    return;
             }
         }
     }    
 }
-
-//DÖRT KOMUT DA EKSİKSİZ ÇALIŞIYOR GİBİ GÖRÜNÜYOR. SON TESTLERİ YAP. SONRASINDA DÖKÜMANTASYONA GEÇEBİLİRSİN.
