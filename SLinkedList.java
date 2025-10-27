@@ -1,5 +1,3 @@
-
-
 public class SLinkedList <T extends DisplayInterface>  implements DisplayInterface //Keeps either people or list.
 {
     private Node<T> head, tail;
@@ -202,11 +200,8 @@ public class SLinkedList <T extends DisplayInterface>  implements DisplayInterfa
                         innerList.setCount(count--);
                         //System.out.println("The person with "+id+" has been deleted successfully.");
                     }
-                    else
-                    {
-                        innerPrev = innerTemp;
-                        innerTemp = innerTemp.getNext();
-                    }
+                    innerPrev = innerTemp;
+                    innerTemp = innerTemp.getNext();
                 }
                 listIterator = listIterator.getNext();
             }
