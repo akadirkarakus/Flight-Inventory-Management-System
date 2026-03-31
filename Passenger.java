@@ -9,7 +9,7 @@ public class Passenger extends Person
         this.priority = priority;
         this.name = name;
         this.ID = ID;
-        this.type = "Passenger";
+        this.type = "passanger";
     }
     
     public int getPriority()
@@ -21,6 +21,6 @@ public class Passenger extends Person
     public String getDisplayString()
     {
         String personInfo = super.getDisplayString();
-        return (personInfo + ", Ticket: "+ticket+ ", Priority: "+priority);
+        return (personInfo + " Ticket: "+ticket+ ", Priority: "+priority);
     }
 }

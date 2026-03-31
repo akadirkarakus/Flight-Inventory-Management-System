@@ -9,7 +9,7 @@ public class Cabin_Crew extends Person
         this.credit = credit;
         this.name = name;
         this.ID = ID;
-        this.type = "Cabin-crew";
+        this.type = "cabin-crew";
     }
 
     public double getCredit()
@@ -25,7 +25,7 @@ public class Cabin_Crew extends Person
     public String getDisplayString()
     {
         String personInfo = super.getDisplayString();
-        return (personInfo+", Job: "+job+ ", Credit: "+credit);
+        return (personInfo+" Job: "+job+ ", Credit: "+credit);
     }
 
    
